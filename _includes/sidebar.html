@@ -1,0 +1,64 @@
+<aside class="sidebar">
+  <h3>网站导航</h3>
+  <ul>
+    <li><a href="/">🏠 主页</a></li>
+    <li><a href="/memorial.html">💝 纪念页</a></li>
+    <li><a href="/about.html">👤 关于</a></li>
+    <li><a href="/projects.html">🎯 项目</a></li>
+  </ul>
+</aside>
+
+<style>
+  .sidebar {
+    float: left;
+    width: 25%;
+    padding: 20px;
+    background: #f5f5f5;
+    border-right: 1px solid #ddd;
+    min-height: calc(100vh - 200px);
+  }
+  
+  .sidebar h3 {
+    margin-top: 0;
+    color: #333;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar li {
+    margin: 10px 0;
+  }
+  
+  .sidebar a {
+    color: #0066cc;
+    text-decoration: none;
+  }
+  
+  .sidebar a:hover {
+    text-decoration: underline;
+  }
+  
+  .main-content {
+    float: left;
+    width: 75%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  @media (max-width: 768px) {
+    .sidebar {
+      float: none;
+      width: 100%;
+      border-right: none;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    .main-content {
+      float: none;
+      width: 100%;
+    }
+  }
+</style>
