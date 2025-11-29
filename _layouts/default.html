@@ -13,50 +13,103 @@
       gtag('config', '{{ site.google_analytics }}');
     </script>
   {% endif %}
+  <style type="text/css">
+    @font-face {
+      font-family: digit;
+      src: url('digital-7_mono.ttf') format("truetype");
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="/css/default.css" rel="stylesheet">
+  <script src="/js/jquery.js"></script>
+  <script src="/js/garden.js"></script>
+  <script src="/js/functions.js"></script>
+  
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      width: 100%;
+      overflow-x: hidden;
+    }
+
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
-      background: #fff;
+      background: #fafafa;
+      width: 100%;
     }
     
     .container {
-      max-width: 1200px;
-      margin: 0 auto;
+      margin: 0;
       display: flex;
       min-height: 100vh;
       flex-direction: column;
+      background: #fafafa;
+      width: 100%;
+      box-sizing: border-box;
     }
     
     header {
-      background: #222;
-      color: #fff;
-      padding: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 30px 20px;
       text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     }
     
     header h1 {
       margin: 0;
+      font-size: 28px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      font-family: 'Roboto', sans-serif;
     }
     
     .content-wrapper {
       display: flex;
       flex: 1;
+      gap: 20px;
+      padding: 20px;
+      background: #fafafa;
+      width: 100%;
+      box-sizing: border-box;
+      min-height: 0;
     }
     
     .sidebar {
-      flex: 0 0 25%;
-      background: #f5f5f5;
-      padding: 20px;
-      border-right: 1px solid #ddd;
-      overflow-y: auto;
+      flex: 0 0 260px;
+      background: white;
+      padding: 24px 20px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      transition: box-shadow 0.3s ease;
+    }
+    
+    .sidebar:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    }
+    
+    .sidebar-left {
+      order: 1;
+    }
+    
+    .sidebar-right {
+      order: 3;
     }
     
     .sidebar h3 {
-      margin-top: 0;
-      color: #333;
-      font-size: 16px;
+      margin: 0 0 20px 0;
+      color: #667eea;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.25px;
+      font-family: 'Roboto', sans-serif;
     }
     
     .sidebar ul {
@@ -66,50 +119,286 @@
     }
     
     .sidebar li {
-      margin: 8px 0;
+      margin: 0;
+      padding: 0;
     }
     
     .sidebar a {
-      color: #0066cc;
+      color: #424242;
       text-decoration: none;
       display: block;
-      padding: 5px 10px;
-      border-radius: 3px;
+      padding: 12px 16px;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      font-size: 13px;
+      font-weight: 500;
+      font-family: 'Roboto', sans-serif;
     }
     
     .sidebar a:hover {
-      background: #e8e8e8;
-      text-decoration: underline;
+      background: rgba(102, 126, 234, 0.1);
+      color: #667eea;
+      transform: translateX(4px);
     }
     
     .main-content {
       flex: 1;
-      padding: 30px;
+      order: 2;
+      padding: 20px;
       overflow-y: auto;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 40px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      min-width: 0;
+      min-height: 0;
+      transition: box-shadow 0.3s ease;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    
+    .main-content:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    }
+    
+    .main-content > * {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    
+    /* Fix content positioning for responsive layout */
+    #code {
+      float: none !important;
+      width: 100% !important;
+      max-width: none !important;
+      height: auto !important;
+      background: #263238;
+      color: #aed581;
+      padding: 20px !important;
+      border-radius: 8px;
+      font-family: 'Courier New', monospace !important;
+      font-size: 13px !important;
+      line-height: 1.5;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box !important;
+      margin: 0 !important;
+    }
+    
+    #code .keyword {
+      color: #f07178 !important;
+      font-weight: bold;
+      display: block;
+      margin: 15px 0 !important;
+    }
+    
+    #code .string {
+      color: #c3e88d !important;
+    }
+    
+    #code .comments {
+      color: #546e7a !important;
+    }
+    
+    #loveHeart {
+      float: none !important;
+      width: 100% !important;
+      max-width: none !important;
+      height: auto !important;
+      position: relative;
+      flex: 0 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 670/625;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(102, 126, 234, 0.15);
+      padding: 20px;
+      box-sizing: border-box !important;
+      margin: 0 !important;
+    }
+    
+    #garden {
+      width: 100% !important;
+      height: 100% !important;
+      aspect-ratio: 670/625;
+      border-radius: 8px;
+    }
+    
+    #words {
+      position: absolute !important;
+      left: 50% !important;
+      top: 50% !important;
+      transform: translate(-50%, -50%) !important;
+      width: auto !important;
+      max-width: 85%;
+      text-align: center;
+      white-space: normal;
+      font-family: 'Roboto', sans-serif;
+      color: #666;
+    }
+
+    /* Scrollbar styling */
+    .main-content::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .main-content::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .main-content::-webkit-scrollbar-thumb {
+      background: rgba(102, 126, 234, 0.3);
+      border-radius: 4px;
+    }
+
+    .main-content::-webkit-scrollbar-thumb:hover {
+      background: rgba(102, 126, 234, 0.6);
+    }
+
+    /* Firefox scrollbar */
+    .main-content {
+      scrollbar-color: rgba(102, 126, 234, 0.3) transparent;
+      scrollbar-width: thin;
+    }
+
+    /* Floating back-to-top button */
+    #backToTop {
+      position: fixed;
+      bottom: 40px;
+      right: 40px;
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);
+      transition: all 0.3s ease;
+      z-index: 1000;
+      padding: 0;
+    }
+
+    #backToTop:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(102, 126, 234, 0.6);
+    }
+
+    #backToTop:active {
+      transform: translateY(-1px);
+    }
+    
+    @media (max-width: 1024px) {
+      #mainDiv {
+        flex-direction: column;
+        gap: 20px;
+      }
+      
+      #content {
+        width: 100%;
+        max-width: 600px;
+      }
+      
+      #loveHeart {
+        width: auto !important;
+        max-width: 100%;
+      }
     }
     
     footer {
-      background: #222;
-      color: #fff;
+      background: #263238;
+      color: rgba(255, 255, 255, 0.7);
       text-align: center;
-      padding: 20px;
+      padding: 25px 20px;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      font-size: 12px;
+      font-weight: 400;
+      font-family: 'Roboto', sans-serif;
       margin-top: auto;
+    }
+    
+    footer small {
+      display: block;
     }
     
     @media (max-width: 768px) {
       .content-wrapper {
         flex-direction: column;
+        gap: 16px;
+        padding: 16px;
       }
       
       .sidebar {
         flex: 0 0 auto;
-        border-right: none;
-        border-bottom: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+      }
+      
+      .sidebar-right {
+        display: none;
       }
       
       .main-content {
         flex: 1;
+        padding: 20px;
+        border-radius: 8px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        min-height: 0;
       }
+      
+      header h1 {
+        font-size: 24px;
+      }
+    }
+    
+    /* Table of Contents styling */
+    #table-of-contents {
+      font-size: 13px;
+      line-height: 1.8;
+    }
+    
+    #table-of-contents ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    #table-of-contents li {
+      margin: 0;
+      padding: 0;
+    }
+    
+    #table-of-contents a {
+      color: #424242;
+      text-decoration: none;
+      display: block;
+      padding: 6px 8px;
+      border-radius: 3px;
+      transition: all 0.2s ease;
+      border-left: 2px solid transparent;
+    }
+    
+    #table-of-contents a:hover {
+      background: rgba(102, 126, 234, 0.1);
+      color: #667eea;
+      border-left-color: #667eea;
+    }
+    
+    #table-of-contents ul ul {
+      padding-left: 12px;
+      margin-top: 4px;
     }
   </style>
 </head>
@@ -120,7 +409,7 @@
     </header>
     
     <div class="content-wrapper">
-      <aside class="sidebar">
+      <aside class="sidebar sidebar-left">
         <h3>📑 导航</h3>
         <ul>
           <li><a href="/">🏠 主页</a></li>
@@ -133,11 +422,141 @@
       <main class="main-content">
         {{ content }}
       </main>
+      
+      <aside class="sidebar sidebar-right" id="toc-sidebar">
+        <h3>📋 目录</h3>
+        <div id="table-of-contents"></div>
+      </aside>
+
+      <!-- Back to top button -->
+      <button id="backToTop" title="回到顶部">↑</button>
     </div>
     
     <footer>
       <small>&copy; {{ site.time | date: '%Y' }} {{ site.title }}</small>
     </footer>
   </div>
+  
+  {% if page.layout == 'default' and page.title == 'LZX 🖤 CJW' %}
+  <script type="text/javascript">
+    var offsetX = $("#loveHeart").width() / 2;
+    var offsetY = $("#loveHeart").height() / 2 - 55;
+    var together = new Date();
+    together.setFullYear(2019, 10, 2);
+    together.setHours(18);
+    together.setMinutes(0);
+    together.setSeconds(0);
+    together.setMilliseconds(0);
+    
+    if (!document.createElement('canvas').getContext) {
+      var msg = document.createElement("div");
+      msg.id = "errorMsg";
+      msg.innerHTML = "Your browser doesn't support HTML5!<br/>Recommend use Chrome 14+/IE 9+/Firefox 7+/Safari 4+"; 
+      document.body.appendChild(msg);
+      $("#code").css("display", "none")
+      $("#copyright").css("position", "absolute");
+      $("#copyright").css("bottom", "10px");
+      document.execCommand("stop");
+    } else {
+      setTimeout(function () {
+        startHeartAnimation();
+      }, 5000);
+
+      timeElapse(together);
+      setInterval(function () {
+        timeElapse(together);
+      }, 500);
+
+      adjustCodePosition();
+      $("#code").typewriter();
+    }
+  </script>
+  {% endif %}
+  
+  <script>
+    // 生成目录
+    function generateTableOfContents() {
+      const mainContent = document.querySelector('.main-content');
+      const tocContainer = document.getElementById('table-of-contents');
+      
+      if (!mainContent || !tocContainer) return;
+      
+      // 获取所有标题
+      const headings = mainContent.querySelectorAll('h1, h2, h3, h4, h5, h6');
+      
+      if (headings.length === 0) {
+        document.getElementById('toc-sidebar').style.display = 'none';
+        return;
+      }
+      
+      // 添加 ID 到标题（如果没有的话）
+      let tocCount = 0;
+      headings.forEach(heading => {
+        if (!heading.id) {
+          heading.id = `heading-${tocCount}`;
+          tocCount++;
+        }
+      });
+      
+      // 构建目录 HTML
+      let tocHTML = '<ul>';
+      let currentLevel = 1;
+      
+      headings.forEach(heading => {
+        const level = parseInt(heading.tagName[1]);
+        const text = heading.textContent;
+        
+        // 调整嵌套级别
+        while (currentLevel < level) {
+          tocHTML += '<ul>';
+          currentLevel++;
+        }
+        while (currentLevel > level) {
+          tocHTML += '</ul>';
+          currentLevel--;
+        }
+        
+        tocHTML += `<li><a href="#${heading.id}">${text}</a></li>`;
+      });
+      
+      while (currentLevel > 1) {
+        tocHTML += '</ul>';
+        currentLevel--;
+      }
+      tocHTML += '</ul>';
+      
+      tocContainer.innerHTML = tocHTML;
+    }
+    
+    // 页面加载完成后生成目录
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', generateTableOfContents);
+    } else {
+      generateTableOfContents();
+    }
+
+    // Back to top button functionality
+    const backToTopButton = document.getElementById('backToTop');
+    const mainContent = document.querySelector('.main-content');
+
+    if (mainContent && backToTopButton) {
+      // Show/hide button based on scroll position
+      mainContent.addEventListener('scroll', function() {
+        if (mainContent.scrollTop > 300) {
+          backToTopButton.style.display = 'flex';
+        } else {
+          backToTopButton.style.display = 'none';
+        }
+      });
+
+      // Smooth scroll to top
+      backToTopButton.addEventListener('click', function() {
+        mainContent.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    }
+  </script>
 </body>
 </html>
